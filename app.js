@@ -4,11 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var Datastore = require('nedb');
 
 var routes = require('./routes/index');
 var notes = require('./routes/notes');
 
 var app = express();
+
+var db = new Datastore({
+  filename: 'notes.db',
+  autoload: true,
+  timestampData: true // autoadd createdAt & updatedAt timestamp fields
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
