@@ -4,18 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var Datastore = require('nedb');
 
-var routes = require('./routes/index');
-var notes = require('./routes/notes');
+var mainRoutes = require('./routes/index');
+var notesRoutes = require('./routes/notes');
 
 var app = express();
-
-var db = new Datastore({
-  filename: 'notes.db',
-  autoload: true,
-  timestampData: true // autoadd createdAt & updatedAt timestamp fields
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,8 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/notes', notes);
+app.use('/', mainRoutes);
+app.use('/notes', notesRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
