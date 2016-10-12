@@ -1,5 +1,5 @@
 {
-  "name": "WED2 Testat",
+  "name": "WED2-Testat",
   "description": "wed2 testat",
   "version": "1.0.0",
   "private": true,
@@ -13,6 +13,7 @@
     "express": "~4.13.4",
     "hbs": "~4.0.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "express-handlebars": "~3.0.0"
   }
 }
