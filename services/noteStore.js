@@ -30,14 +30,17 @@ function getNote(id, callback) {
 }
 
 
-function getNotes() {
-    db.find({}, function (err, docs) {
-        callback(err, docs);
-    });
+function getNotes(orderBy, filterBy, next) {
+  db.count({}, function (err, count) {
+    if(err) return next(err);
+    if(count === 0) return next(null, {});
+
+    db.find(filterBy).sort(orderBy).exec(next);
+  });
 }
 
 function setNote() {
-
+// TODO!
 }
 
 module.exports = {'getNotes': getNotes, 'getNote': getNote, 'setNote': setNote, 'createNote': createNote};
