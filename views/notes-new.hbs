@@ -1,1 +1,32 @@
-Notes new!
+<main>
+    <head>
+        <h1>Neue ToDo</h1>
+    </head>
+    <section class="content">
+        <form action="/" method="POST">
+            <label>
+                Title
+                <input type="text" name="title" placeholder="Title" required autofocus />
+            </label>
+            <label>
+                Beschreibung
+                <textarea name="description" placeholder="Beschreibung" required></textarea>
+            </label>
+            <label>
+                Wichtigkeit
+                <input type="range" min="1" max="5" step="1" placeholder="1-5" name="importance" required />
+            </label>
+            <label>
+                Fertig bis
+                <input type="date" name="dueDate" placeholder="DD/MM/YYYY" required />
+            </label>
+            <label>
+                <input type="checkbox" name="finished" />
+            </label>
+            <button type="submit">Anlegen</button>
+        </form>
+        <form action="/" method="POST">
+            <button type="submit">Abbrechen</button>
+        </form>
+    </section>
+</main>

@@ -1,1 +1,32 @@
-Notes edit!
+<main>
+    <head>
+        <h1>ToDo ändern</h1>
+    </head>
+    <section class="content">
+        <form action="/" method="POST">
+            <label>
+                Title
+                <input type="text" name="title" placeholder="Title" value="{{title}}" required autofocus />
+            </label>
+            <label>
+                Beschreibung
+                <textarea name="description" placeholder="Beschreibung" value="{{description}}" required></textarea>
+            </label>
+            <label>
+                Wichtigkeit
+                <input type="range" min="1" max="5" step="1" name="importance" placeholder="1-5" value="{{importance}}" required />
+            </label>
+            <label>
+                Fertig bis
+                <input type="date" name="dueDate" placeholder="DD/MM/YYYY" value="{{dueDate}}" required />
+            </label>
+            <label>
+                <input type="checkbox" name="finished" />
+            </label>
+            <button type="submit">Speichern</button>
+        </form>
+        <form action="/" method="POST">
+            <button type="submit">Abbrechen</button>
+        </form>
+    </section>
+</main>

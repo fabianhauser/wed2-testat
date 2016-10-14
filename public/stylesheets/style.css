@@ -1,8 +1,87 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-a {
-  color: #00B7FF;
+/* GENERAL */
+body {
+  background-color: #1abc9c;
+  color: #FFF;
+  font-family: SansSerif;
 }
+
+main > button {
+  background: #16a085;
+}
+
+header {
+  background: #16a085;
+  padding: 1rem;
+}
+
+header > button {
+  background: #1abc9c;
+}
+
+/* ICON */
+.star:before {
+  content: "\2605";
+  position: absolute;
+}
+
+/* ELEMENTS */
+.toolbox {
+  background: #16a085;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+  border-radius: 0.3rem;
+  padding: 1rem;
+}
+
+/* TEXT */
+h1 {
+  font-size: 2rem;
+  color: #95a5a6;
+}
+
+/* LAYOUT */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.toolbar > form:nth-last-child(2){
+  flex: 1;
+}
+
+.content {
+  padding: 2rem;
+}
+
+main > header {
+  border-bottom: 1px solid #EEE;
+}
+
+@media all and (max-width: 950px) {
+  .filter {
+    flex-direction: column;
+  }
+
+  .filter > form > button {
+    width: 100%;
+  }
+}
+
+/* FORM */
+button {
+  padding: 0.5rem;
+  min-width: 15rem;
+  background: #1abc9c;
+  color: #FFF;
+  border: none;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+  border-radius: 0.3rem;
+  margin: 0.5rem;
+}
+
+

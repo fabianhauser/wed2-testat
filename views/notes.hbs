@@ -1,1 +1,50 @@
-Notes listing!
+<main>
+    <header>
+        <div class="toolbar">
+            <form action="/" method="POST">
+                <button type="submit">Create new Node</button>
+            </form>
+            <form action="/" method="POST">
+                <button type="submit">Style Switcher</button>
+            </form>
+        </div>
+        <div class="toolbar filter">
+            <form action="/" method="POST">
+                <button type="submit">By finished Date</button>
+            </form>
+            <form action="/" method="POST">
+                <button type="submit">By created Date</button>
+            </form>
+            <form action="/" method="POST">
+                <button type="submit">By Importance</button>
+            </form>
+            <form action="/" method="POST">
+                <button type="submit">Alle Anzeigen</button>
+            </form>
+        </div>
+    </header>
+    <section class="content">
+        {{#if notes}}
+            {{#each notes}}
+                <article>
+                    <header>
+                        <span>{{dueDate}}</span>
+                        <span>{{title}}</span>
+                        <span>{{rating}}</span>
+                    </header>
+                    <div>
+                        <input type="radio" value="{{finished}}" readonly>
+                        <textarea readonly></textarea>
+                        <form action="/" method="POST">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </div>
+                </article>
+            {{/each}}
+        {{else}}
+            <div class="toolbox">
+                <p>Keine ToDo's gefuden :(</p>
+            </div>
+        {{/if}}
+    </section>
+</main>
