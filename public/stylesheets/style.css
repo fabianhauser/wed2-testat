@@ -41,7 +41,8 @@ header > button {
 /* TEXT */
 h1 {
   font-size: 2rem;
-  color: #95a5a6;
+  color: #FFF;
+  margin: 0.5rem;
 }
 
 /* LAYOUT */

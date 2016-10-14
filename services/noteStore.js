@@ -1,7 +1,3 @@
-/*
- * Init notes storage
- */
-
 var Datastore = require('nedb');
 var db = new Datastore({
   filename: '../notes.db',

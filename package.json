@@ -1,6 +1,7 @@
 {
   "name": "WED2-Testat",
   "description": "wed2 testat",
+  "author": "Michael Wieland, Fabian Hauser",
   "version": "1.0.0",
   "private": true,
   "scripts": {
