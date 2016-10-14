@@ -54,9 +54,7 @@ module.exports.showNotes = function(req, res, next) {
     /*
      * Set sorting cookie on first call
      */
-    var configuration = JSON.parse(req.cookies.configuration);
 
-    res.cookie('configuration', JSON.stringify(configuration), { maxAge: 900000, httpOnly: true });
 
     /*
      * Get and render notes

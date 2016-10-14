@@ -1,38 +1,39 @@
 var Datastore = require('nedb');
 var db = new Datastore({
-  filename: '../data/notes.db',
-  autoload: true,
-  timestampData: true // autoadd createdAt & updatedAt timestamp fields
+    filename: '../data/notes.db',
+    autoload: true,
+    timestampData: true // autoadd createdAt & updatedAt timestamp fields
 });
 
-function publicGetAll(orderBy, filterBy, next) {
-  this.db.count({}, function (err, count) {
-    if(err) return next(err);
-    if(count === 0) return next(null, {});
-
-    this.db.find(filterBy).sort(orderBy).exec(next);
-  }.bind(this));
+function Note(noteData) {
+    this.title = noteData['title'];
+    this.description = noteData['description'];
+    this.rating = noteData['rating'];
+    this.dueDate = noteData['dueDate'];
+    this.finished = noteData['finished'];
 }
 
-function getNote(noteId, next) {
-  noteId = parseInt(noteId); // enforce numeric ID
+function createNote(noteData, callback) {
+    var newNote = new Note(noteData);
 
-  this.db.count({ _id: noteId }, function(err, count) {
-    if(err) return next(err);
-    if(count === 0) return next(null, {});
-
-    this.db.find({_id: noteId}).exec(next);
-  }.bind(this));
+    db.insert(newNote, function (err, newNote) {
+        if (callback) {
+            callback(err, newNote);
+        }
+    });
 }
 
-function updateNote(noteId, noteData, next) {
-  // TODO: Validate noteId and noteData
-  this.db.update({ _id: nodeId }, noteData, {}, next);
+function getNote(id, callback) {
+    db.findOne({_id: id}, function (err, doc) {
+        callback(err, doc);
+    });
 }
 
-function createNote(noteData, next) {
-  // TODO: Validate noteData
-  this.db.insert(noteData, next);
+
+function getAllNotes() {
+    db.find({}, function (err, docs) {
+        callback(err, docs);
+    });
 }
 
-module.exports = {all: publicGetAll, };
+module.exports = {all: getAllNotes};
