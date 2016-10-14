@@ -3,25 +3,33 @@
         <h1>Neue ToDo</h1>
     </header>
     <section class="content">
-        <form action="/" method="POST">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" placeholder="Title" required autofocus />
+        <form method="POST">
+            <label>
+                <span>Titel</span>
+                <input type="text" name="title" placeholder="Title" required autofocus />
+            </label>
+            <label>
+                <span>Beschreibung</span>
+                <textarea name="description" id="description" placeholder="Beschreibung" required></textarea>
+            </label>
 
-            <label for="description">Beschreibung</label>
-            <textarea name="description" id="description" placeholder="Beschreibung" required></textarea>
+            <label>
+                <span>Wichtigkeit</span>
+                <input type="range" min="1" max="5" step="1" placeholder="1-5" name="rating" id="rating" required />
+            </label>
 
-            <label for="rating">Wichtigkeit</label>
-            <input type="range" min="1" max="5" step="1" placeholder="1-5" name="rating" id="rating" required />
+            <label>
+                <span>Fertig bis</span>
+                <input type="date" name="dueDate" id="due-date" placeholder="DD/MM/YYYY" required />
+            </label>
 
-            <label for="due-date">Fertig bis</label>
-            <input type="date" name="dueDate" id="due-date" placeholder="DD/MM/YYYY" required />
-
-            <input type="checkbox" name="finished" />
+            <label>
+                <span>Erledigt</span>
+                <input type="checkbox" name="finished" />
+            </label>
 
             <button type="submit">Anlegen</button>
-        </form>
-        <form action="/" method="POST">
-            <button type="submit">Abbrechen</button>
+            <a href="" class="button">Abbrechen</a>
         </form>
     </section>
 </main>
