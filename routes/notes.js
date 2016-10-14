@@ -1,18 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Datastore = require('nedb');
 var DbalNotes = require('../dbal/notes.js');
-
-/*
- * Init notes storage
- */
-
-var db = new Datastore({
-  filename: '../notes.db',
-  autoload: true,
-  timestampData: true // autoadd createdAt & updatedAt timestamp fields
-});
-var notes = new DbalNotes(db);
 
 /*
  * Do actual routing
@@ -20,18 +8,42 @@ var notes = new DbalNotes(db);
 
 /* notes listing */
 router.post('/', function(req, res, next) {
-  console.log("TODO: Set user view configuration  as cookie " +
-    "& pass to next"); //TODO
+  var configuration = req.cookies.configuration;
+
+  if (configuration === undefined) {
+    configuration = {
+      notes: {}
+    };
+  }
+
+  configuration.notes = {
+    orderBy: req.params.orderBy,
+    filterBy: req.params.filterBy
+  };
+  var confStringify = JSON.stringify(configuration);
+  req.cookies.configuration = confStringify;
+  res.cookie('configuration', confStringify, { maxAge: 900000, httpOnly: true });
   next();
 });
 
 router.get('/', function(req, res, next) {
-  var orderBy = "_id";
-  var filterBy = null;
+  /*
+   * Set sorting cookie on first call
+   */
+  var configuration = JSON.parse(req.cookies.configuration);
+
+    res.cookie('configuration', JSON.stringify(configuration), { maxAge: 900000, httpOnly: true });
+  }
+
+  /*
+   * Get and render notes
+   */
+  var orderBy = configuration.notes.orderBy; // TODO: Validate this.
+  var filterBy = configuration.notes.filterBy; // TODO: Validate this.
   notes.getNotes(orderBy, filterBy, function(err, data){
     if(err) {
       console.log("Database error: ", err);
-      //TODO: View nice error page
+      next(err);
     }
     res.render('notes', {'notes': data });
   });
@@ -48,7 +60,7 @@ router.post('/new', function(req, res, next) {
   notes.createNote(noteData, function(err){
     if(err) {
       console.log("Database error: ", err);
-      //TODO: View nice error page
+      next(err);
     }
     res.redirect(302, '/');
   });
@@ -61,7 +73,7 @@ router.get('/:id', function(req, res, next) {
   notes.getNote(noteId, function(err, data){
     if(err) {
       console.log("Database error: ", err);
-      //TODO: View nice error page
+      next(err);
     }
     res.render('notes-edit', { note: data });
   });
@@ -74,7 +86,7 @@ router.post('/:id', function(req, res, next) {
   notes.updateNote(noteId, noteData, function(err){
     if(err) {
       console.log("Database error: ", err);
-      //TODO: View nice error page
+      next(err);
     }
     res.redirect(302, '/');
   });
