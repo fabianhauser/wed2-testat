@@ -40,7 +40,7 @@ function getNotes(orderBy, filterBy, next) {
 }
 
 function setNote() {
-// TODO!
+  db.update({ _id: nodeId }, noteData, {}, next);
 }
 
 module.exports = {'getNotes': getNotes, 'getNote': getNote, 'setNote': setNote, 'createNote': createNote};
