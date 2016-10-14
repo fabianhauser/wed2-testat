@@ -1,6 +1,6 @@
 var Datastore = require('nedb');
 var db = new Datastore({
-  filename: '../notes.db',
+  filename: '../data/notes.db',
   autoload: true,
   timestampData: true // autoadd createdAt & updatedAt timestamp fields
 });
