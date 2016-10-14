@@ -30,10 +30,14 @@ function getNote(id, callback) {
 }
 
 
-function getAllNotes() {
+function getNotes() {
     db.find({}, function (err, docs) {
         callback(err, docs);
     });
 }
 
-module.exports = {all: getAllNotes};
+function updateNote() {
+
+}
+
+module.exports = {'getNotes': getNotes, 'getNote': getNote, 'setNote': setNote, 'createNote': createNote};
