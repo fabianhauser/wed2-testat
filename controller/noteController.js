@@ -2,66 +2,25 @@
  * Created by michi on 14.10.16.
  */
 var store = require("../services/noteStore.js");
+var configurator = require("../util/configurator.js");
 
-module.exports.showIndex = function(req, res)
+module.exports.getIndex = function(req, res)
 {
     res.redirect(302, '/notes/');
 };
 
-/** New Note */
-module.exports.showNewNote = function(req, res, next) {
-    res.render('notes-new', {});
-};
-
-module.exports.newNote = function(req, res, next) {
-    var noteData = null; //TODO: Fill this with form data
-    notes.createNote(noteData, function(err){
-        if(err) {
-            console.log("Database error: ", err);
-            next(err);
-        }
-        res.redirect(302, '/');
-    });
-};
-
-/** Edit Note */
-module.exports.showEditNote = function(req, res, next) {
-    var noteId = null; //TODO: Fill this with form data
-    notes.getNote(noteId, function(err, data){
-        if(err) {
-            console.log("Database error: ", err);
-            next(err);
-        }
-        res.render('notes-edit', { note: data });
-    });
-};
-
-module.exports.editNote = function(req, res, next) {
-    var noteId = null; //TODO: Fill with form data
-    var noteData = null; // TODO: Fill with form data
-
-    notes.updateNote(noteId, noteData, function(err){
-        if(err) {
-            console.log("Database error: ", err);
-            next(err);
-        }
-        res.redirect(302, '/');
-    });
-};
-
 /** Note list */
-module.exports.showNotes = function(req, res, next) {
-    /*
-     * Set sorting cookie on first call
-     */
 
+// Set new filter configuration
+module.exports.reloadNotes = function(req, res, next) {
+    configurator(req, res);
+    next();
+};
 
-    /*
-     * Get and render notes
-     */
-    var orderBy = configuration.notes.orderBy; // TODO: Validate this.
-    var filterBy = configuration.notes.filterBy; // TODO: Validate this.
-    notes.getNotes(orderBy, filterBy, function(err, data){
+module.exports.getNotes = function(req, res, next) {
+    var config = configurator(req, res);
+
+    store.getNotes(config.notes.orderBy, config.notes.filterBy, function(err, data){
         if(err) {
             console.log("Database error: ", err);
             next(err);
@@ -70,21 +29,56 @@ module.exports.showNotes = function(req, res, next) {
     });
 };
 
-module.exports.reloadNotes = function(req, res, next) {
-    var configuration = req.cookies.configuration;
+/** Edit Note */
+module.exports.getNote = function(req, res, next) {
+    var noteId = req.params.id;
+    store.getNote(noteId, function(err, data){
+        if(err) {
+            console.log("Database error: ", err);
+            next(err);
+        }
+        res.render('notes-edit', { note: data });
+    });
+};
 
-    if (configuration === undefined) {
-        configuration = {
-            notes: {}
-        };
+module.exports.setNote = function(req, res, next) {
+  var noteId = req.params.id;
+  var noteData = {
+    title: req.params.title,
+    description: req.paramts.description,
+    rating: req.params.rating,
+    finished: req.params.finished,
+    dueDate: req.params.dueDate
+  };
+
+  store.setNote(noteId, noteData, function(err){
+      if(err) {
+          console.log("Database error: ", err);
+          next(err);
+      }
+      res.redirect(302, '/');
+  });
+};
+
+/** New Note */
+module.exports.createNewNote = function(req, res, next) {
+    res.render('notes-new', {});
+};
+
+module.exports.createNote = function(req, res, next) {
+  var noteData = {
+    title: req.params.title,
+    description: req.paramts.description,
+    rating: req.params.rating,
+    finished: req.params.finished,
+    dueDate: req.params.dueDate
+  };
+
+  store.createNote(noteData, function(err){
+    if(err) {
+      console.log("Database error: ", err);
+      next(err);
     }
-
-    configuration.notes = {
-        orderBy: req.params.orderBy,
-        filterBy: req.params.filterBy
-    };
-    var confStringify = JSON.stringify(configuration);
-    req.cookies.configuration = confStringify;
-    res.cookie('configuration', confStringify, { maxAge: 900000, httpOnly: true });
-    next();
+    res.redirect(302, '/');
+  });
 };
