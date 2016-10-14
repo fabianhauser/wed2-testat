@@ -36,7 +36,7 @@ function getNotes() {
     });
 }
 
-function updateNote() {
+function setNote() {
 
 }
 
