@@ -6,30 +6,32 @@
         <form method="POST">
             <label>
                 <span>Titel</span>
-                <input type="text" name="title" placeholder="Title" required autofocus />
+                <input type="text" name="title" placeholder="Titel" required autofocus />
             </label>
             <label>
                 <span>Beschreibung</span>
-                <textarea name="description" id="description" placeholder="Beschreibung" required></textarea>
+                <textarea name="description" placeholder="Beschreibung" required></textarea>
             </label>
 
             <label>
                 <span>Wichtigkeit</span>
-                <input type="range" min="1" max="5" step="1" placeholder="1-5" name="rating" id="rating" required />
+                <input type="range" min="0" max="5" step="1" value="0" name="rating" required />
             </label>
 
             <label>
                 <span>Fertig bis</span>
-                <input type="date" name="dueDate" id="due-date" placeholder="DD/MM/YYYY" required />
+                <input type="date" name="dueDate" placeholder="DD/MM/YYYY" pattern="([0-9]?[1-9])/([0-9]?[1-9])/([1-9]){4}" required />
             </label>
 
             <label>
-                <span>Erledigt</span>
                 <input type="checkbox" name="finished" />
+                <span>Erledigt</span>
             </label>
 
-            <button type="submit">Anlegen</button>
-            <a href="" class="button">Abbrechen</a>
+            <div class="handles">
+                <button type="submit">Anlegen</button>
+                <a href="" class="button">Abbrechen</a>
+            </div>
         </form>
     </section>
 </main>

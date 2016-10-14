@@ -1,7 +1,7 @@
 <main>
-    <head>
+    <header>
         <h1>ToDo ändern</h1>
-    </head>
+    </header>
     <section class="content">
         <form method="POST">
             <label>
@@ -14,18 +14,21 @@
             </label>
             <label>
                 <span>Wichtigkeit</span>
-                <input type="range" min="1" max="5" step="1" name="importance" value="{{importance}}" required />
+                <input type="range" min="0" max="5" step="1" name="importance" value="{{importance}}" required />
             </label>
             <label>
                 <span>Fertig bis</span>
-                <input type="date" name="dueDate" placeholder="DD/MM/YYYY" value="{{dueDate}}" required />
+                <input type="date" name="dueDate" placeholder="DD/MM/YYYY" pattern="([0-9]?[1-9])/([0-9]?[1-9])/([1-9]){4}" value="{{dueDate}}" required />
             </label>
             <label>
-                <span>Erledigt</span>
                 <input type="checkbox" name="finished" />
+                <span>Erledigt</span>
             </label>
-            <button type="submit">Speichern</button>
-            <a href="" class="button">Abbrechen</a>
+
+            <div class="handles">
+                <button type="submit">Speichern</button>
+                <a href="" class="button">Abbrechen</a>
+            </div>
         </form>
     </section>
 </main>

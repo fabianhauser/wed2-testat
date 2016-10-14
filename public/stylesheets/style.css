@@ -45,13 +45,17 @@ h1 {
   margin: 0.5rem 0;
 }
 
+span {
+  font-size: 1.2rem;
+}
+
 /* LAYOUT */
 .toolbar {
   display: flex;
   flex-wrap: wrap;
 }
 
-.toolbar > form:nth-last-child(2){
+.toolbar > a:nth-last-child(2){
   flex: 1;
 }
 
@@ -75,28 +79,48 @@ main > header {
 
 /* FORM */
 label {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0.5rem 0;
+  display: block;
+  margin: 1rem;
+}
+
+label > span:nth-child(1) {
+  padding: 0.5rem 1rem 0 0;
+  width: 20%;
   text-align: right;
+  display: inline-block;
+  vertical-align: top;
 }
 
-label > span {
-  padding-right: 2rem;
-  flex-basis: 20%;
+label > input:not([type=checkbox]),
+label > textarea {
+  display: inline-block;
+  padding: 0.5rem;
+  width: 75%;
+  border-radius: 0.3rem;
+  border: none;
 }
 
-label > textarea,
-label > input[type=text] {
-  flex-basis: 80%;
+label > input[type=checkbox],
+.handles {
+  margin-left: calc(20% + 1rem);
 }
 
 @media all and (max-width: 950px) {
-  label {
+  label > span:nth-child(1) {
     text-align: left;
-    flex-direction: column;
+  }
+
+  label > input:not([type=checkbox]),
+  label > textarea {
+    width: 100%;
+  }
+
+  label > input[type=checkbox],
+  .handles {
+    margin-left: 0;
   }
 }
+
 
 input[type="range"]::-moz-range-track {
   background: #EEE;
