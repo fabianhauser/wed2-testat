@@ -1,28 +1,23 @@
 <main>
-    <head>
+    <header>
         <h1>Neue ToDo</h1>
-    </head>
+    </header>
     <section class="content">
         <form action="/" method="POST">
-            <label>
-                Title
-                <input type="text" name="title" placeholder="Title" required autofocus />
-            </label>
-            <label>
-                Beschreibung
-                <textarea name="description" placeholder="Beschreibung" required></textarea>
-            </label>
-            <label>
-                Wichtigkeit
-                <input type="range" min="1" max="5" step="1" placeholder="1-5" name="importance" required />
-            </label>
-            <label>
-                Fertig bis
-                <input type="date" name="dueDate" placeholder="DD/MM/YYYY" required />
-            </label>
-            <label>
-                <input type="checkbox" name="finished" />
-            </label>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" placeholder="Title" required autofocus />
+
+            <label for="description">Beschreibung</label>
+            <textarea name="description" id="description" placeholder="Beschreibung" required></textarea>
+
+            <label for="rating">Wichtigkeit</label>
+            <input type="range" min="1" max="5" step="1" placeholder="1-5" name="rating" id="rating" required />
+
+            <label for="due-date">Fertig bis</label>
+            <input type="date" name="dueDate" id="due-date" placeholder="DD/MM/YYYY" required />
+
+            <input type="checkbox" name="finished" />
+
             <button type="submit">Anlegen</button>
         </form>
         <form action="/" method="POST">
