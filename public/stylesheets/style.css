@@ -27,7 +27,7 @@ header .button {
 /* ICON */
 .star:before {
   content: "\2605";
-  position: absolute;
+  display: inline-block;
 }
 
 /* ELEMENTS */
@@ -88,6 +88,10 @@ article > div {
 
 article > div > textarea {
   flex: 2;
+}
+
+article > header {
+  display: flex;
 }
 
 @media all and (max-width: 950px) {
@@ -160,6 +164,7 @@ button {
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  vertical-align: middle;
   line-height: 2rem;
 }
 

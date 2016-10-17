@@ -6,6 +6,7 @@ var db = new Datastore({
 });
 
 function Note(noteData) {
+    console.log(noteData['title']);
     this.title = noteData['title'];
     this.description = noteData['description'];
     this.rating = noteData['rating'];
@@ -43,8 +44,8 @@ function getNotes(orderBy, filterBy, next) {
   });
 }
 
-function setNote() {
-  db.update({ _id: nodeId }, noteData, {}, next);
+function setNote(noteId, noteData, next) {
+  db.update({ _id: noteId }, noteData, {}, next);
 }
 
 module.exports = {'getNotes': getNotes, 'getNote': getNote, 'setNote': setNote, 'createNote': createNote};

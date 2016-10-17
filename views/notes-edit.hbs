@@ -4,31 +4,33 @@
     </header>
     <section class="content">
         <form method="POST">
-            <label>
-                <span>Titel</span>
-                <input type="text" name="title" placeholder="Title" value="{{title}}" required autofocus />
-            </label>
-            <label>
-                <span>Beschreibung</span>
-                <textarea name="description" placeholder="Beschreibung" value="{{description}}" required></textarea>
-            </label>
-            <label>
-                <span>Wichtigkeit</span>
-                <input type="range" min="0" max="5" step="1" name="importance" value="{{importance}}" required />
-            </label>
-            <label>
-                <span>Fertig bis</span>
-                <input type="date" name="dueDate" placeholder="DD/MM/YYYY" pattern="([1-3][0-9]|[1-9])/(1[0-2]|[1-9])/([1-9][0-9]{3,})" value="{{dueDate}}" required />
-            </label>
-            <label class="unlabeled">
-                <input type="checkbox" name="finished" />
-                <span>Erledigt</span>
-            </label>
+            {{#with note}}
+                <label>
+                    <span>Titel</span>
+                    <input type="text" name="title" placeholder="Title" value="{{title}}" required autofocus />
+                </label>
+                <label>
+                    <span>Beschreibung</span>
+                    <textarea name="description" placeholder="Beschreibung" required>{{description}}</textarea>
+                </label>
+                <label>
+                    <span>Wichtigkeit</span>
+                    <input type="range" min="0" max="5" step="1" name="rating" value="{{rating}}" required />
+                </label>
+                <label>
+                    <span>Fertig bis</span>
+                    <input type="date" name="dueDate" placeholder="DD/MM/YYYY" pattern="([1-3][0-9]|[1-9])/(1[0-2]|[1-9])/([1-9][0-9]{3,})" value="{{dueDate}}" required />
+                </label>
+                <label class="unlabeled">
+                    <input type="checkbox" name="finished" {{#if finished}}checked{{/if}} />
+                    <span>Erledigt</span>
+                </label>
 
-            <div class="unlabeled">
-                <button type="submit">Speichern</button>
-                <a href="" class="button">Abbrechen</a>
-            </div>
+                <div class="unlabeled">
+                    <button type="submit">Speichern</button>
+                    <a href="" class="button">Abbrechen</a>
+                </div>
+            {{/with}}
         </form>
     </section>
 </main>

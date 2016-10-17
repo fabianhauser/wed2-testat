@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
 hbs.registerHelper('equal', require('handlebars-helper-equal'));
+hbs.registerHelper('times', require('./helpers/timesHelper'));
 
 var notesRoutes = require('./routes/notes');
 
