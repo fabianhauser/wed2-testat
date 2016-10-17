@@ -92,6 +92,12 @@ article > div > textarea {
 
 article > header {
   display: flex;
+  justify-content: space-between;
+}
+
+article > header > span:nth-last-child(2) {
+  flex: 1;
+  padding: 0 1rem;
 }
 
 @media all and (max-width: 950px) {
@@ -107,6 +113,15 @@ label {
   margin: 1rem;
 }
 
+label > input:not([type=checkbox]),
+textarea {
+  display: inline-block;
+  padding: 0.5rem;
+  margin: 0 .5rem;
+  border-radius: 0.3rem;
+  border: none;
+}
+
 label > span:nth-child(1) {
   padding: 0.5rem 1rem 0 0;
   width: 20%;
@@ -117,11 +132,7 @@ label > span:nth-child(1) {
 
 label > input:not([type=checkbox]),
 label > textarea {
-  display: inline-block;
-  padding: 0.5rem;
   width: 75%;
-  border-radius: 0.3rem;
-  border: none;
 }
 
 .unlabeled {
@@ -139,7 +150,7 @@ label > textarea {
   }
 
   label > input[type=checkbox],
-  .handles {
+  .unlabeled {
     margin-left: 0;
   }
 }

@@ -6,10 +6,6 @@ var noteController = require('../controller/noteController.js');
 /* root routing */
 router.get('/', noteController.getIndex);
 
-/* edit note */
-router.get('/notes/:id', noteController.getNote);
-router.post('/notes/:id', noteController.setNote);
-
 /* notes listing */
 router.get('/notes', noteController.getNotes);
 
@@ -17,6 +13,8 @@ router.get('/notes', noteController.getNotes);
 router.get('/notes/new', noteController.createNewNote);
 router.post('/notes/new', noteController.createNote);
 
-
+/* edit note */
+router.get('/notes/:id', noteController.getNote);
+router.post('/notes/:id', noteController.setNote);
 
 module.exports = router;
