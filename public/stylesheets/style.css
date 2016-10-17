@@ -11,7 +11,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-main > button {
+main > .button {
   background: #16a085;
 }
 
@@ -20,7 +20,7 @@ header {
   padding: 1rem;
 }
 
-header button {
+header .button {
   background: #1abc9c;
 }
 
@@ -73,6 +73,30 @@ main > header {
   }
 }
 
+/* ARTICLE */
+article {
+  margin-bottom: 2em;
+  border: 1px solid #EEE;
+  border-radius: 0.3rem;
+  overflow: hidden;
+}
+article > div {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0.5rem 0;
+}
+
+article > div > textarea {
+  flex: 2;
+}
+
+@media all and (max-width: 950px) {
+  article > div {
+    flex-direction: column;
+  }
+}
+
+
 /* FORM */
 label {
   display: block;
@@ -96,8 +120,7 @@ label > textarea {
   border: none;
 }
 
-label > input[type=checkbox],
-.handles {
+.unlabeled {
   margin-left: calc(20% + 1rem);
 }
 

@@ -26,14 +26,17 @@
                     <header>
                         <span>{{dueDate}}</span>
                         <span>{{title}}</span>
-                        <span>{{rating}}</span>
+                        {{#each notes.ratings}}
+                            <span class="star">{{rating}}</span>
+                        {{/each}}
                     </header>
                     <div>
-                        <input type="radio" value="{{finished}}" readonly>
+                        <label>
+                            <input type="checkbox" value="{{finished}}" readonly>
+                            <span>Finished</span>
+                        </label>
                         <textarea readonly></textarea>
-                        <form action="/" method="POST">
-                            <button type="submit">Edit</button>
-                        </form>
+                        <a href="./notes/{{_id}}" class="button">Editieren</a>
                     </div>
                 </article>
             {{/each}}

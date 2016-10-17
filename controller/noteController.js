@@ -63,7 +63,7 @@ module.exports.createNewNote = function(req, res, next) {
 module.exports.createNote = function(req, res, next) {
   var noteData = {
     title: req.params.title,
-    description: req.paramts.description,
+    description: req.params.description,
     rating: req.params.rating,
     finished: req.params.finished,
     dueDate: req.params.dueDate
