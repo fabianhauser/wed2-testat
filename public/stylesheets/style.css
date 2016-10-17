@@ -56,7 +56,7 @@ span {
 }
 
 .toolbar > a:nth-last-child(2){
-  flex: 1;
+  flex: 1 0;
 }
 
 .content {
@@ -70,10 +70,6 @@ main > header {
 @media all and (max-width: 950px) {
   .filter {
     flex-direction: column;
-  }
-
-  .filter > form > button {
-    width: 100%;
   }
 }
 
