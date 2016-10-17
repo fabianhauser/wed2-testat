@@ -36,11 +36,14 @@ function getNotes(orderBy, filterBy, next) {
     if(err) return next(err);
     if(count === 0) return next(null, null);
 
-    if(!filterBy) {
+    if(filterBy) {
+	filterBy = { finished: false };
+    } else {
       filterBy = {};
     }
-
-    db.find(filterBy).sort(orderBy).exec(next);
+    orderByObj = {};
+    orderByObj[orderBy] = -1;
+    db.find(filterBy).sort(orderByObj).exec(next);
   });
 }
 

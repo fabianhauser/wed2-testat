@@ -10,7 +10,7 @@ function configurator(req, res) {
     var configuration = {
       layout: '',
       notes: {
-        orderBy: 'createdAt',
+      orderBy: 'createdAt',
         filterBy: '',
       }
     };
