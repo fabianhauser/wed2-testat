@@ -7,7 +7,6 @@ var noteController = require('../controller/noteController.js');
 router.get('/', noteController.getIndex);
 
 /* notes listing */
-router.post('/notes', noteController.reloadNotes);
 router.get('/notes', noteController.getNotes);
 
 /* new note */

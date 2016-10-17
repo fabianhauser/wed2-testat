@@ -8,19 +8,24 @@ function configurator(req, res) {
     var configuration = JSON.parse(req.cookies.configuration);
   } else {
     var configuration = {
+      layout: '',
       notes: {
         orderBy: 'createdAt',
-        filterBy: ''
+        filterBy: '',
       }
     };
   }
 
-  if(req.params.orderBy){
-    configuration.notes.orderBy = req.params.orderBy;
+  if(req.query.layout){
+    configuration.layout = req.query.layout;
   }
 
-  if(req.params.filterBy){
-    configuration.notes.filterBy = req.params.orderBy;
+  if(req.query.orderBy !== undefined){
+    configuration.notes.orderBy = req.query.orderBy;
+  }
+
+  if(req.query.filterBy !== undefined){
+    configuration.notes.filterBy = req.query.filterBy;
   }
 
   var confStringify = JSON.stringify(configuration);

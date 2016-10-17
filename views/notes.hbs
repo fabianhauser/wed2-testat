@@ -2,16 +2,20 @@
     <header>
         <div class="toolbar">
             <a href="./new" class="button">Create new Note</a>
-            <a href="./?styleswitch=true" class="button">Style Switcher</a>
+	    {{#if config.layout }}
+              <a href="./?layout=" class="button">Style Switcher</a>
+	    {{else}}
+              <a href="./?layout=blue" class="button">Style Switcher</a>
+	    {{/if}}
         </div>
         <div class="toolbar filter">
-            <a href="./?orderBy=dueDate" class="button">By finished Date</a>
-            <a href="./?orderBy=createdAt" class="button">By created Date</a>
-            <a href="./?orderBy=rating" class="button">By Importance</a>
+            <a href="./?orderBy=dueDate" class="button {{#equal config.notes.orderBy 'dueDate'}}active{{/equal}}">By finished Date</a>
+            <a href="./?orderBy=createdAt" class="button {{#equal config.notes.orderBy 'createdAt'}}active{{/equal}}">By created Date</a>
+            <a href="./?orderBy=rating" class="button {{#equal config.notes.orderBy 'rating'}}active{{/equal}}">By Importance</a>
 	    {{#if config.notes.filterBy}}
-              <a href="./?filterBy=finished" class="button">Fertige verbergen</a>
+              <a href="./?filterBy=" class="button active">Alle anzeigen</a>
             {{else}}
-              <a href="./?filterBy=" class="button">Fertige verbergen</a>
+              <a href="./?filterBy=finished" class="button">Fertige verbergen</a>
             {{/if}}
         </div>
     </header>
