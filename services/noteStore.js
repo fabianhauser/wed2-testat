@@ -35,6 +35,10 @@ function getNotes(orderBy, filterBy, next) {
     if(err) return next(err);
     if(count === 0) return next(null, null);
 
+    if(!filterBy) {
+      filterBy = {};
+    }
+
     db.find(filterBy).sort(orderBy).exec(next);
   });
 }
