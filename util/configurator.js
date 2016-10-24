@@ -10,14 +10,16 @@ function configurator(req, res) {
     var configuration = {
       layout: '',
       notes: {
-      orderBy: 'createdAt',
-        filterBy: '',
+        orderBy: 'createdAt',
+        filterBy: ''
       }
     };
   }
 
   if(req.query.layout){
-    configuration.layout = req.query.layout;
+      configuration.layout = req.query.layout;
+  } else {
+    configuration.layout = '';
   }
 
   if(req.query.orderBy !== undefined){
