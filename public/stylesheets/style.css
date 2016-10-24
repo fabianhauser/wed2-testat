@@ -52,11 +52,11 @@ span {
 /* LAYOUT */
 .toolbar {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 
-.toolbar > a:nth-last-child(2){
-  flex: 1 0;
+.toolbar > a:last-child{
+  margin-left:auto;
 }
 
 .content {
@@ -68,8 +68,12 @@ main > header {
 }
 
 @media all and (max-width: 950px) {
-  .filter {
-    flex-direction: column;
+  .toolbar {
+    flex-flow: column wrap;
+  }
+
+  .toolbar > a:last-child {
+    margin: 0.5rem;
   }
 }
 
