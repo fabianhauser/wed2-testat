@@ -31,19 +31,21 @@ function getNote(id, callback) {
 }
 
 
-function getNotes(orderBy, filterBy, next) {
+function getNotes(config, next) {
   db.count({}, function (err, count) {
     if(err) return next(err);
     if(count === 0) return next(null, null);
 
-    if(filterBy) {
-	filterBy = { finished: false };
-    } else {
-      filterBy = {};
+    if(config.notes.filterBy === 'finished') {
+        config.notes.filterBy = { finished: false };
     }
+    if (config.notes.filterBy === 'all') {
+        config.notes.filterBy = null;
+    }
+
     orderByObj = {};
-    orderByObj[orderBy] = -1;
-    db.find(filterBy).sort(orderByObj).exec(next);
+    orderByObj[config.notes.orderBy] = config.notes.sorting;
+    db.find(config.notes.filterBy).sort(orderByObj).exec(next);
   });
 }
 

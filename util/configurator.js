@@ -10,20 +10,26 @@ function configurator(req, res) {
     var configuration = {
       layout: '',
       notes: {
+        filterBy: '',
         orderBy: 'createdAt',
-        filterBy: ''
+        sorting: 1
       }
     };
   }
 
-  if(req.query.layout){
+  if(req.query.layout !== undefined){
       configuration.layout = req.query.layout;
-  } else {
-    configuration.layout = '';
   }
 
   if(req.query.orderBy !== undefined){
     configuration.notes.orderBy = req.query.orderBy;
+
+    // 1 = ascending, -1 = descending
+    if (configuration.notes.sorting === 1) {
+      configuration.notes.sorting = -1;
+    } else {
+      configuration.notes.sorting = 1;
+    }
   }
 
   if(req.query.filterBy !== undefined){
@@ -31,7 +37,9 @@ function configurator(req, res) {
   }
 
   var confStringify = JSON.stringify(configuration);
-  if(req.cookie === undefined) req.cookie = {};
+  if(req.cookie === undefined) {
+    req.cookie = {};
+  }
   req.cookie.configuration = confStringify;
   res.cookie('configuration', confStringify, { maxAge: 900000, httpOnly: true });
   return configuration;

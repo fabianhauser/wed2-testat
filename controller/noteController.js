@@ -12,7 +12,7 @@ module.exports.getIndex = function (req, res) {
 
 module.exports.getNotes = function (req, res, next) {
     var config = configurator(req, res);
-    store.getNotes(config.notes.orderBy, config.notes.filterBy, function (err, data) {
+    store.getNotes(config, function (err, data) {
         if (err) {
             console.log("Database error: ", err);
             next(err);
