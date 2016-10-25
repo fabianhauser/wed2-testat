@@ -55,7 +55,7 @@ span {
   flex-flow: row wrap;
 }
 
-.toolbar > a:last-child{
+.toolbar > a:last-child {
   margin-left:auto;
 }
 
@@ -65,16 +65,6 @@ span {
 
 main > header {
   border-bottom: 1px solid #EEE;
-}
-
-@media all and (max-width: 950px) {
-  .toolbar {
-    flex-flow: column wrap;
-  }
-
-  .toolbar > a:last-child {
-    margin: 0.5rem;
-  }
 }
 
 /* ARTICLE */
@@ -103,12 +93,6 @@ article > header {
 article > header > span:nth-last-child(2) {
   flex: 1;
   padding: 0 1rem;
-}
-
-@media all and (max-width: 950px) {
-  article > div {
-    flex-direction: column;
-  }
 }
 
 
@@ -144,23 +128,6 @@ label > textarea {
   margin-left: calc(20% + 1rem);
 }
 
-@media all and (max-width: 950px) {
-  label > span:nth-child(1) {
-    text-align: left;
-  }
-
-  label > input:not([type=checkbox]),
-  label > textarea {
-    width: 100%;
-  }
-
-  label > input[type=checkbox],
-  .unlabeled {
-    margin-left: 0;
-  }
-}
-
-
 input[type="range"]::-moz-range-track {
   background: #EEE;
   outline: none;
@@ -184,4 +151,31 @@ button {
   line-height: 2rem;
 }
 
+@media all and (max-width: 70em) {
+  article > div {
+    flex-direction: column;
+  }
+
+  .toolbar {
+    flex-flow: column wrap;
+  }
+
+  .toolbar > a:last-child {
+    margin: 0.5rem;
+  }
+
+  label > span:nth-child(1) {
+    text-align: left;
+  }
+
+  label > input:not([type=checkbox]),
+  label > textarea {
+    width: 100%;
+  }
+
+  label > input[type=checkbox],
+  .unlabeled {
+    margin-left: 0;
+  }
+}
 
